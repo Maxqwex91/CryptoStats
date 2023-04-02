@@ -4,11 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoStats.Views"
+             xmlns:viewModels="clr-namespace:CryptoStats.ViewModels"
+             xmlns:views="clr-namespace:CryptoStats.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,42,0,0"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="255,15,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Label Name="ResponseLabel" Content="Label" HorizontalAlignment="Left" Margin="327,6,0,0" VerticalAlignment="Top"/>
+            <UserControl.Resources>
+            <viewModels:MainPageViewModel  x:Key="ViewModel"/>
+            </UserControl.Resources>
+    <Grid DataContext="{StaticResource ViewModel}">
+        <DataGrid 
+            Name="CryptocurrenciesDataGrid"
+            Margin="0,42,0,0"
+            ItemsSource="{Binding CryptocurrenciesCollection}"
+            AutoGenerateColumns="True"
+            />
+        <StackPanel>
+        <ComboBox 
+            HorizontalAlignment="Left" Margin="10,10,0,0" 
+            VerticalAlignment="Top" Width="170"
+            IsEditable="True"
+            IsTextSearchEnabled="True"
+            IsSynchronizedWithCurrentItem="True"
+            SelectedItem="{Binding MySelectedItem, Mode=TwoWay}"
+            ItemsSource="{Binding MyItems}"
+            >
+            <ComboBox.InputBindings>
+            <KeyBinding  Key="Enter" Command="{Binding NotImplementedCommand}"/>
+            </ComboBox.InputBindings>
+        </ComboBox>
+        </StackPanel>
     </Grid>
 </UserControl>

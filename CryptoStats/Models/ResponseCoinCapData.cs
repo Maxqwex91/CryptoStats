@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CryptoStats.Models
 {
-    public class ResponceCoinCapData
+    public class ResponseCoinCapData
     {
-        public List<Cryptocurrency> Data { get; set; }
+        public List<Cryptocurrency>? Data { get; set; }
         public long Timestamp { get; set; }
     }
 }

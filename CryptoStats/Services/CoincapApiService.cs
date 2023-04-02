@@ -13,7 +13,7 @@ namespace CryptoStats.Services
     public class CoincapApiService
     {
         public HttpClient httpClient { get; private set; }
-        public HttpRequestMessage httpRequestMessage { get; private set; }
+        public HttpRequestMessage? httpRequestMessage { get; private set; }
         public HttpResponseMessage? httpResponseMessage { get; private set; }
 
         private static string BearerToken => "06b85496-705b-4541-b4dd-3d2746eb2e82";
@@ -31,7 +31,7 @@ namespace CryptoStats.Services
             httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
             httpResponseMessage.EnsureSuccessStatusCode();
             var jsonResultAsTaskStringAsync = await httpResponseMessage.Content.ReadAsStringAsync();
-            var jsonArray = JsonConvert.DeserializeObject<ResponceCoinCapData>(jsonResultAsTaskStringAsync);
+            var jsonArray = JsonConvert.DeserializeObject<ResponseCoinCapData>(jsonResultAsTaskStringAsync);
             return jsonArray?.Data;
         }
     }

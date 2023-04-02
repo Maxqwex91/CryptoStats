@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using CryptoStats.Models;
 
 namespace CryptoStats.Views
 {
@@ -24,12 +27,7 @@ namespace CryptoStats.Views
         public MainPageView()
         {
             InitializeComponent();
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var coinCapApi = new CoincapApiService();
-            ResponseLabel.Content = await coinCapApi.RequestCryptocurrenciesAsync();
+            
         }
     }
 }
